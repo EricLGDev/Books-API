@@ -36,9 +36,11 @@ books.get('/seed', (req, res) => {
         .then(res.status(200).json({
             message: 'Seed successful'
         }))
-        .catch(res.status(400).json({
-            message: 'Seed unsuccessful'
-        }))
+        .catch(err => {
+            res.status(400).json({
+                message: 'An error has occurred, seed unsuccessful'
+            })
+        })
 })
 
 
