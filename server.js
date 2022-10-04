@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 
 // CONTROLLER
 const booksController = require('./controllers/booksController')
+app.use('/books', booksController)
 
 // LISTEN
 app.listen(PORT, () => {
