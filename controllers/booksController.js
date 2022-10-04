@@ -16,6 +16,32 @@ books.get('/', (req, res) => {
         })
 })
 
+// SHOW
+books.get('/:id', (req, res) => {
+    Book.findById(req.params.id)
+        .then(foundBook => {
+            res.status(200).json(foundBook)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: 'An error has occurred, could not find the book'
+            })
+        })
+})
+
+// UPDATE 
+books.put('/:id', (req, res) => {
+    Book.findByIdAndUpdate(req.params.id, req.body)
+        .then(updatedBook => {
+            console.log(req.body)
+            res.status(200).json(updatedBook)
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: 'An error has occurred, could not edit the book'
+            })
+        })
+})
 
 // EXPORT
 module.exports = books
