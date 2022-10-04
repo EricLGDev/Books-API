@@ -43,5 +43,20 @@ books.put('/:id', (req, res) => {
         })
 })
 
+// DELETE 
+books.delete('/:id', (req, res) => {
+    Book.findByIdAndDelete(req.params.id)
+        .then(deletedBook => {
+            res.status(200).json({
+                message: 'Delete successful'
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                message: 'An error has occurred, could not delete the book'
+            })
+        })
+})
+
 // EXPORT
 module.exports = books
